@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alfa Sharks Flow - Manual do Robô</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1a2a6c 0%, #2a5298 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #1a2a6c, #2a5298);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .emoji {
+            font-size: 1.5rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #1a2a6c, #2a5298);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(26, 42, 108, 0.3);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-card {
+            background: #f8f9ff;
+            border: 2px solid #1a2a6c;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(26, 42, 108, 0.2);
+        }
+
+        .feature-title {
+            font-weight: bold;
+            color: #1a2a6c;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .phase-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .phase-card {
+            background: white;
+            border-left: 5px solid #1a2a6c;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .phase-title {
+            font-weight: bold;
+            color: #1a2a6c;
+            margin-bottom: 10px;
+        }
+
+        .calculation {
+            background: #e8f2ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #1a2a6c;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #1a2a6c, #2a5298);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .whatsapp-button {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 20px 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            padding: 20px;
+        }
+
+        .conditions {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .conditions h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .conditions ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .conditions li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .conditions li:before {
+            content: "⚠️";
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header, .main-content {
+                padding: 20px;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .phase-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-button {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .info-box {
+            background: #e8f2ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #1a2a6c;
+        }
+        
+        .info-title {
+            font-weight: bold;
+            color: #1a2a6c;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header fade-in">
+            <div class="logo">🐋 Alfa Sharks Flow</div>
+            <div class="subtitle">Desenvolvido por Sperb Trader 📊🚀</div>
+            <h1>Manual do Robô Alfa Sharks Flow</h1>
+            <p><strong>Estratégia de Fluxo com Gestão Inteligente</strong></p>
+        </header>
+
+        <main class="main-content fade-in">
+            <section class="section">
+                <h2 class="section-title">🎯 Lógica do Robô (Resumo Simplificado)</h2>
+                <p>O Alfa Sharks Flow é um robô de day trade que opera com base em:</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3 class="feature-title">📊 Indicadores de Tendência</h3>
+                        <p>VWAP e Hilo Activator para identificar direção do mercado.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3 class="feature-title">📈 Momentum</h3>
+                        <p>IFR (Índice de Força Relativa) para confirmar entradas.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3 class="feature-title">🎯 Alvos Dinâmicos</h3>
+                        <p>Calculados com base na volatilidade do ativo (Average True Range).</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3 class="feature-title">🛡️ Proteção</h3>
+                        <p>Stop móvel e trailing stop para proteger o lucro e limitar perdas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">⏰ Melhor Horário Operacional</h2>
+                <div class="highlight-box pulse">
+                    <p><strong>Horário Sugerido:</strong> 🕘 9:00 às 12:30 (horário de Brasília)</p>
+                </div>
+                <p><strong>Por quê?</strong> Período de maior liquidez e volatilidade no mercado brasileiro e maior rentabilidade acumulada ao longo dos anos trabalhando apenas nesse horário.</p>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">💰 Gestão de Capital Recomendada</h2>
+                <div class="info-box">
+                    <p class="info-title">1 contrato para cada R$ 350 a R$1000 de capital (varia de acordo com seu perfil de agressividade)</p>
+                    <p><strong>Exemplo:</strong></p>
+                    <p>Capital de R$ 3.500 → até 10 contratos.</p>
+                    <p><strong>Por quê?</strong> Preserva o capital e reduz risco de drawdown excessivo.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">⚙️ Funcionamento Prático</h2>
+                
+                <div class="phase-container">
+                    <div class="phase-card">
+                        <div class="phase-title">🔍 Análise do Mercado</div>
+                        <p>O robô analisa o preço em relação ao VWAP e direção do Hilo.</p>
+                        <p>Confirma momentum com IFR.</p>
+                    </div>
+                    
+                    <div class="phase-card">
+                        <div class="phase-title">🎯 Entrada</div>
+                        <p>Compra quando o mercado está forte 📈.</p>
+                        <p>Venda quando o mercado está fraco 📉.</p>
+                    </div>
+                    
+                    <div class="phase-card">
+                        <div class="phase-title">🛡️ Gerenciamento</div>
+                        <p>Dois alvos de lucro (parcial e final).</p>
+                        <p>Stop inicial baseado na volatilidade.</p>
+                        <p>Trailing stop após certo disparo.</p>
+                    </div>
+                    
+                    <div class="phase-card">
+                        <div class="phase-title">⛔ Proteções</div>
+                        <p>Limite diário de ganho e perda.</p>
+                        <p>Para de operar se atingir os limites.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">❗ Recomendações Importantes</h2>
+                <div class="conditions">
+                    <ul>
+                        <li>Use apenas no MINI ÍNDICE BOVESPA (WINFUT)</li>
+                        <li>Período gráfico de atuação deve ser selecionado o 15 minutos</li>
+                        <li>Teste em conta demo antes de usar com capital real</li>
+                        <li>Monitore ocasionalmente</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">📆 Atualizações</h2>
+                <div class="info-box">
+                    <p><strong>Versão 3.8 (09/2025):</strong> Melhorias no trailing stop e ajustes de horário.</p>
+                    <p><strong>Próximas atualizações:</strong> Parâmetros de horários e sentido de abertura de posições editável por usuários.</p>
+                </div>
+            </section>
+        </main>
+
+        <div class="contact-section fade-in">
+            <h2>❓ Sugestões, dúvidas ou reclamações</h2>
+            <p>Entre em contato através do grupo de WhatsApp Oficial</p>
+            <a href="https://chat.whatsapp.com/CgHk6K8jRiH8vvkmeWW5go" class="whatsapp-button" target="_blank">
+                📱 Grupo do WhatsApp
+            </a>
+        </div>
+
+        <footer class="footer">
+            <p><strong>🐋 Alfa Sharks Flow: Operando com a força dos tubarões!</strong></p>
+            <p>Desenvolvido por Sperb Trader - Todos os direitos reservados.</p>
+            <br>
+            <p><small>📝 Documento atualizado em setembro de 2025.</small></p>
+        </footer>
+    </div>
+
+    <script>
+        // Adiciona animações suaves ao rolar a página
+        window.addEventListener('scroll', function() {
+            const elements = document.querySelectorAll('.section');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('fade-in');
+                }
+            });
+        });
+
+        // Adiciona efeito de hover nos cards
+        document.querySelectorAll('.feature-card, .phase-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
